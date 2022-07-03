@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>India COVID 19</title>
+    <style type="text/css">
+         body{
+             background-image: url('backgroundimage.jpeg');
+         }
+</style>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body onload="ge()">
+<CENTER style="font-size: 70px;color:white">COVID 19</CENTER><br>
+<CENTER style="font-size: 40px;color:white">We're All In This Together</CENTER><br>
+<div class="table-responsive">
+<center>
+
+<table  id="tbvalue"class="table table-hover table-stripped " style="width:1000px">
+	<tr>
+	<td scope="col"style="color:black;background-color:white">States</td>
+	<td scope="col"style="color:black;background-color:white">Total Confirmed</td>
+	<td scope="col"style="color:black;background-color:white">Total Recovered</td>
+	<td scope="col"style="color:black;background-color:white">Total Deaths </td>
+	<td scope="col"style="color:black;background-color:white">Active</td>
+	<td scope="col"style="color:black;background-color:white">New Recovered</td>
+	<td scope="col"style="color:black;background-color:white">Last Updated</td>
+</tr>
+</table>
+</center>
+</div>
+<script type="text/javascript">
+	function ge(){
+        document.body.style.backgroundColor =  "none";
+		 fetch('https://geeteshsood.github.io/covidindiadata/')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data['statewise'][2]['state']);
+
+    for(var i=1;i<data['statewise'].length;i++){
+    	var table=document.getElementById("tbvalue");
+    	var tr=document.createElement("tr");
+    	
+    	var td=document.createElement("td");
+    	td.setAttribute("id",i);
+    	document.getElementById("tbvalue").appendChild(tr);
+    	document.getElementById("tbvalue").appendChild(td);
+            td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById(i).innerHTML=data['statewise'][i]['state'];
+
+    	var td=document.createElement("td");
+    	td.setAttribute("id",'b'+i);
+    	document.getElementById("tbvalue").appendChild(td);
+        td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById('b'+i).innerHTML=data['statewise'][i]['confirmed'];
+
+
+    	var td=document.createElement("td");
+    	td.setAttribute("id",'c'+i);
+    	document.getElementById("tbvalue").appendChild(td);
+    	       td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById('c'+i).innerHTML=data['statewise'][i]['recovered'];
+
+
+    	var td=document.createElement("td");
+    	td.setAttribute("id",'d'+i);
+    	document.getElementById("tbvalue").appendChild(td);
+    	  	        td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById('d'+i).innerHTML=data['statewise'][i]['deaths'];
+
+
+    	var td=document.createElement("td");
+    	td.setAttribute("id",'e'+i);
+    	document.getElementById("tbvalue").appendChild(td);
+    	  	        td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById('e'+i).innerHTML=data['statewise'][i]['active'];
+
+
+    	var td=document.createElement("td");
+    	td.setAttribute("id",'f'+i);
+    	document.getElementById("tbvalue").appendChild(td);
+    	       td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById('f'+i).innerHTML=data['statewise'][i]['deltarecovered'];
+
+    	var td=document.createElement("td");
+    	td.setAttribute("id",'g'+i);
+    	document.getElementById("tbvalue").appendChild(td);
+    	       td.style.backgroundColor="white";
+        td.style.borderColor="black";
+    	document.getElementById('g'+i).innerHTML=data['statewise'][i]['lastupdatedtime'];
+
+    }
+  });
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
